@@ -51,6 +51,8 @@ coverage.xml
 .pytest_cache/
 cover/
 myenv/
+
+.ipynb_checkpoints
 # Translations
 *.mo
 *.pot
