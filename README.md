@@ -78,7 +78,7 @@ Check out the deployed app here:
 
 👤 Author
 Deepanshu Rao
-[🔗 GitHub Profile](https"//github.com/deeprao03)
+[🔗 GitHub Profile](https://github.com/deeprao03)
 ---
 
 ### ✅ How to Use It
