@@ -91,4 +91,4 @@ Deepanshu Rao
 ## 🖼️ Preview
 
 ![Homepage Screenshot](image/Screenshot_home.png)
-![Graphs](image/Screenshot.png)
+![Graphs](image/Screenshot_graph.png)
