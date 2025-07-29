@@ -79,11 +79,14 @@ Check out the deployed app here:
 👤 Author
 Deepanshu Rao
 [🔗 GitHub Profile](https://github.com/deeprao03)
+
 ---
 
 ### ✅ How to Use It
 1. Copy the above code into your `README.md` file.
 2. Make sure the deployment link and repo link are correct.
-3. If you have screenshots, you can insert them like this:
-   ```markdown
-   ![App Screenshot](link-to-screenshot.png)
+
+---
+## 🖼️ Preview
+
+![Homepage Screenshot](image/Screenshot_home.png)
