@@ -1,17 +1,20 @@
 import streamlit as st
 import pandas as pd
-import preprocessor,helper
+import helper
 import plotly.express as px
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
+from visualizations import get_country_heatmap_data, draw_country_event_heatmap,draw_winter_event_heatmap,get_winter_event_heatmap,generate_sport_event_heatmap,draw_sport_event_heatmap
 
-df = pd.read_csv("Data/olympics_dataset.csv")
-winter_df = pd.read_csv("Data/Athletes_winter_games.csv")
-region_df = pd.read_csv("Data/regions.csv")
 
-df = preprocessor.preprocess(df,region_df)
-winter_df = preprocessor.preprocess_winter(winter_df,region_df)
+@st.cache_data
+def load_summer_data():
+    return pd.read_pickle("Data/Summer_Olympics_processed_data.pkl")
+
+@st.cache_data
+def load_winter_data():
+    return pd.read_pickle("Data/Winter_Olympics_processed_data.pkl")
+
+df = load_summer_data()
+winter_df = load_winter_data()
 
 st.sidebar.image("Data/Olympic_Flag.png")
 st.sidebar.header("Olympics Analysis")
@@ -101,11 +104,8 @@ if selected_olympics=='Summer Olympics':
 
         st.title("No. of Events over time(Every Sport)")
 
-        x = df.drop_duplicates(['Year','Sport','Event'])
-        x = x.pivot_table(index ='Sport',columns='Year',values='Event',aggfunc='count').fillna(0).astype(int)
-        fig, ax = plt.subplots(figsize=(20, 20))
-        sns.heatmap(x, annot=True, ax=ax, linewidths=0.5)
-        st.pyplot(fig)
+        heatmap_data = generate_sport_event_heatmap(df)
+        draw_sport_event_heatmap(heatmap_data)
 
 
         st.title("Most Successful Athletes")
@@ -131,13 +131,12 @@ if selected_olympics=='Summer Olympics':
         st.plotly_chart(fig)
 
         st.title(selected_country+" excels in the following")
-        pt = helper.country_event_heatmap(df,selected_country)
-        if pt is not None and not pt.empty and pt.select_dtypes(include=[np.number]).size > 0:
-            fig, ax = plt.subplots(figsize=(30, 20))
-            sns.heatmap(pt, ax=ax, annot=True)
-            st.pyplot(fig)
+        pt = get_country_heatmap_data(df, selected_country)
+        if not pt.empty:
+            draw_country_event_heatmap(pt, selected_country)
         else:
-            st.write("No data available to display heatmap for this country.")
+            st.write("No data available to display heatmap for this selection.")
+
 
 
         st.title("Top 10 athletes of "+selected_country)
@@ -224,11 +223,9 @@ else:
 
         st.title("No. of Events over time(Every Sport)")
 
-        x = winter_df.drop_duplicates(['Year','Sport','Event'])
-        x = x.pivot_table(index ='Sport',columns='Year',values='Event',aggfunc='count').fillna(0).astype(int)
-        fig, ax = plt.subplots(figsize=(20, 20))
-        sns.heatmap(x, annot=True, ax=ax, linewidths=0.5)
-        st.pyplot(fig)
+        pt = get_winter_event_heatmap(winter_df)
+        draw_winter_event_heatmap(pt)
+
 
 
         st.title("Most Successful Athletes")
@@ -253,14 +250,11 @@ else:
         st.plotly_chart(fig)
 
         st.title(selected_country+" excels in the following")
-        pt = helper.country_event_heatmap(winter_df,selected_country)
-        if pt is not None and not pt.empty and pt.select_dtypes(include=[np.number]).size > 0:
-            fig, ax = plt.subplots(figsize=(30, 20))
-            sns.heatmap(pt, ax=ax, annot=True)
-            st.pyplot(fig)
+        pt = get_country_heatmap_data(winter_df, selected_country)
+        if not pt.empty:
+            draw_country_event_heatmap(pt, selected_country)
         else:
-            st.write("No data available to display heatmap for this country.")
-
+            st.write("No data available to display heatmap for this selection.")
 
         st.title("Top 10 athletes of "+selected_country)
         top10_df = helper.most_successfull_countryWise(winter_df,selected_country)
