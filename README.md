@@ -54,19 +54,15 @@ Check out the deployed app here:
 1. **Clone the repo:**
    ```bash
    git clone https://github.com/deeprao03/olympics_analysis.git
-Install dependencies:
 
-bash
-Copy
-Edit
-pip install -r requirements.txt
-Run the app:
+2. **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
 
-bash
-Copy
-Edit
-cd App
-streamlit run app.py
+3.  **Run the app:**
+    ```bash
+    streamlit run App/app.py
+
 ✅ Future Improvements
 🎯 Add event-specific filters (e.g., swimming, gymnastics)
 
