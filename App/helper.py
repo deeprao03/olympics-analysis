@@ -1,8 +1,14 @@
-def medal_tally(df):
-    medal_df = df.drop_duplicates(subset=['Team','NOC','Year','City','Sport','Event','Medal'])
-    medal_df = medal_df.groupby('NOC').sum()[['Gold','Silver','Bronze']].sort_values('Gold',ascending=False).reset_index()
-    medal_df['Total'] = medal_df['Gold'] + medal_df['Silver'] + medal_df['Bronze']
-    return medal_df
+# def medal_tally(df,season):
+#     if season=='Summer Olympics':
+#         medal_df = df.drop_duplicates(subset=['Team','NOC','Year','City','Sport','Event','Medal'])
+#         medal_df = medal_df.groupby('NOC').sum()[['Gold','Silver','Bronze']].sort_values('Gold',ascending=False).reset_index()
+#         medal_df['Total'] = medal_df['Gold'] + medal_df['Silver'] + medal_df['Bronze']
+
+#     else:
+#         medal_df = df.drop_duplicates(subset=['Team','NOC','Year','City','Sport','Event','Medal'])
+#         medal_df = medal_df.groupby('NOC').sum()[['Gold','Silver','Bronze']].sort_values('Gold',ascending=False).reset_index()
+#         medal_df['Total'] = medal_df['Gold'] + medal_df['Silver'] + medal_df['Bronze']
+#     return medal_df
 
 def year_country(df):
     years = df['Year'].unique().tolist()
@@ -73,6 +79,43 @@ def most_successfull(df, sport):
     p.rename(columns={'count':'Medals'},inplace=True)
     p = p.head(15)
     p = p.merge(temp_df,on='Name',how='left')[['Name','Medals','Sport','region']]
+    p = p.drop_duplicates('Name')
+
+    p = p.sort_values(by='Medals', ascending=False).reset_index(drop=True)
+    p.index += 1
+    p.index.name = 'Rank'
+
+    return p
+
+
+def yearwise_medal_tally(df,country):
+
+    temp_df = df[df['Medal']!= 'No medal'].reset_index()
+    temp_df.drop_duplicates(subset=['Team','NOC','Year','City','Sport','Event','Medal'],inplace=True)
+    new_df = temp_df[temp_df['region']==country]
+    final_df = new_df.groupby('Year').count()['Medal'].reset_index()
+    final_df.rename(columns={'Year':'Edition'},inplace=True)
+
+    return final_df
+
+def country_event_heatmap(df,country):
+
+    temp_df = df[df['Medal']!= 'No medal'].reset_index()
+    temp_df.drop_duplicates(subset=['Team','NOC','Year','City','Sport','Event','Medal'],inplace=True)
+    new_df = temp_df[temp_df['region']==country]
+    pt = new_df.pivot_table(index='Sport',columns = 'Year',values='Medal',aggfunc='count').fillna(0)
+
+    return pt
+
+def most_successfull_countryWise(df, country):
+    temp_df = df[df['Medal'] != 'No medal'].reset_index(drop=True)
+    temp_df = temp_df[temp_df['region'] == country]
+
+    # Count medals
+    p = temp_df['Name'].value_counts().reset_index()
+    p.rename(columns={'count':'Medals'},inplace=True)
+    p = p.head(10)
+    p = p.merge(temp_df,on='Name',how='left')[['Name','Medals','Sport']]
     p = p.drop_duplicates('Name')
 
     p = p.sort_values(by='Medals', ascending=False).reset_index(drop=True)
