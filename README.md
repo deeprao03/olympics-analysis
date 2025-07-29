@@ -65,7 +65,8 @@ Check out the deployed app here:
 
 ---
 
-✅ Future Improvements
+##✅ Future Improvements
+
 🎯 Add event-specific filters (e.g., swimming, gymnastics)
 
 🧑‍💼 Integrate athlete bios from public APIs
@@ -90,3 +91,4 @@ Deepanshu Rao
 ## 🖼️ Preview
 
 ![Homepage Screenshot](image/Screenshot_home.png)
+![Graphs](image/Screenshot.png)
