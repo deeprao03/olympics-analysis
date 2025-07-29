@@ -1,79 +1,94 @@
-🏅 OlympiTrack
+# 🏅 OlympiTrack
 
-OlympiTrack is a dynamic data analysis and visualization web app for exploring Summer and Winter Olympics data across years. Built using Streamlit, this project offers users an interactive way to analyze country performance, athlete dominance, participation trends, and more from 1896 to 2024.
+**OlympiTrack** is an interactive and insightful data analysis web app for exploring **Summer** and **Winter Olympics** over the years. Built using **Streamlit**, it provides dynamic visualizations and deep insights into athlete dominance, country performance, participation trends, and more — spanning from **1896 to 2024**.
 
-📊 About the Data
+---
 
-Summer Olympics: Data from 1896 to 2024
+## 📊 About the Data
 
-Winter Olympics: Data from 1900 to 2014
+- **Summer Olympics:** 1896 to 2024  
+- **Winter Olympics:** 1900 to 2014  
+- The dataset **includes the 1906 Intercalated Games**, which are not officially recognized in modern medal counts — leading to **minor discrepancies** from official records.
 
-The dataset includes 1906 Olympics, which are not officially recognized in modern medal tallies. This results in minor differences in medal counts compared to official records.
+---
 
-🎯 Features
+## 🎯 Key Features
 
-Medal tally viewer by year and country
+- 🥇 View **medal tallies** by year and country  
+- 📈 Explore **historical trends** in participating countries, events, and athletes  
+- 🌍 Generate **interactive heatmaps** of country-wise performance  
+- 👑 Discover the **most successful athletes**, globally and by country  
+- ☀️ Separate analysis for **Summer** and ❄️ **Winter** Olympics  
+- ⚙️ **Modular code** structure and **optimized data loading** for better performance  
 
-Historical trends: Participating countries, athletes, and events over time
+---
 
-Interactive heatmaps of country-wise sports performance
+## 🚀 Live Demo
 
-Insights into most successful athletes, globally and by country
+Check out the deployed app here:  
+🔗 [https://olympitrack.onrender.com](https://olympitrack.onrender.com)
 
-Separate exploration modes for Summer and Winter Olympics
+---
 
-Smooth performance through modular code and optimized data access
+## 🛠️ Tech Stack
 
-🚀 Live Demo
+- **Python 3.11+**
+- **Pandas** for data manipulation
+- **Matplotlib** and **Seaborn** for visualizations
+- **Streamlit** for the web interface
+- **Render** for deployment
 
-You can access the deployed app here: [olympitrack.onrender.com](https://olympitrack.onrender.com)
+---
 
-🛠️ Technologies Used
+## 🧠 Challenges Faced
 
-Python 3.11+
+- 🐢 **Slow heatmap rendering:** Solved by reducing DataFrame size using `drop_duplicates()`, `pivot_table()`, and simplifying the visuals  
+- 🕓 **App load time:** Improved by removing redundant preprocessing and modularizing logic into `helper.py`  
+- 📁 **File path issues on Render:** Fixed by using relative paths and keeping only production-critical files  
+- 📉 **Medal count discrepancy:** Due to inclusion of 1906 games (not part of official Olympic records)
 
-Pandas for data manipulation
+---
 
-Matplotlib & Seaborn for plotting
+## 🧪 How to Run Locally
 
-Streamlit for web UI
-
-Render for deployment
-
-🧠 Challenges Faced
-
-🔁 Heavy heatmap loading time: Optimized by reducing DataFrame size using drop_duplicates, using pivot_table, and simplifying visuals.
-
-🔧 Slow app startup: Reduced load time by removing redundant preprocessing and modularizing logic into helper.py.
-
-⚙️ Render file path issues: Adjusted relative paths and kept only essential files for production.
-
-🔄 Data discrepancies due to inclusion of 1906 Olympics, which are typically omitted from official records.
-
-🧪 How to Run Locally
-
-Clone the repository:
-
-git clone https://github.com/deeprao03/olympics_analysis.git
-
+1. **Clone the repo:**
+   ```bash
+   git clone https://github.com/deeprao03/olympics_analysis.git
 Install dependencies:
 
+bash
+Copy
+Edit
 pip install -r requirements.txt
-
 Run the app:
 
+bash
+Copy
+Edit
 cd App
 streamlit run app.py
-
 ✅ Future Improvements
+🎯 Add event-specific filters (e.g., swimming, gymnastics)
 
-Add event-based filtering (e.g. swimming, athletics)
+🧑‍💼 Integrate athlete bios from public APIs
 
-Include athlete bio integration from public APIs
+🗺️ Include map-based visualizations
 
-Add map-based visualizations
+📡 Add real-time Olympic updates (when API available)
 
-Incorporate real-time Olympic updates
+👤 Author
+Deepanshu Rao
+🔗 GitHub Profile
 
-👤 Author  
-[Deepanshu Rao](https://github.com/deeprao03)
+yaml
+Copy
+Edit
+
+---
+
+### ✅ How to Use It
+1. Copy the above code into your `README.md` file.
+2. Make sure the deployment link and repo link are correct.
+3. If you have screenshots, you can insert them like this:
+   ```markdown
+   ![App Screenshot](link-to-screenshot.png)
