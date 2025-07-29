@@ -13,6 +13,7 @@ region_df = pd.read_csv("/home/deep_rao03/3 Month/Projects/Olympics/Data/regions
 df = preprocessor.preprocess(df,region_df)
 winter_df = preprocessor.preprocess_winter(winter_df,region_df)
 
+st.sidebar.image("/home/deep_rao03/3 Month/Projects/Olympics/Data/Olympic_flag.png")
 st.sidebar.header("Olympics Analysis")
 selected_olympics = st.sidebar.selectbox('Select Olympics',['Summer Olympics','Winter Olympics'])
 user_menu = st.sidebar.radio(
