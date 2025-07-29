@@ -6,14 +6,14 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-df = pd.read_csv("/home/deep_rao03/3 Month/Projects/Olympics/Data/olympics_dataset.csv")
-winter_df = pd.read_csv("/home/deep_rao03/3 Month/Projects/Olympics/Data/Athletes_winter_games.csv")
-region_df = pd.read_csv("/home/deep_rao03/3 Month/Projects/Olympics/Data/regions.csv")
+df = pd.read_csv("Data/olympics_dataset.csv")
+winter_df = pd.read_csv("Data/Athletes_winter_games.csv")
+region_df = pd.read_csv("Data/regions.csv")
 
 df = preprocessor.preprocess(df,region_df)
 winter_df = preprocessor.preprocess_winter(winter_df,region_df)
 
-st.sidebar.image("/home/deep_rao03/3 Month/Projects/Olympics/Data/Olympic_flag.png")
+st.sidebar.image("Data/Olympic_flag.png")
 st.sidebar.header("Olympics Analysis")
 selected_olympics = st.sidebar.selectbox('Select Olympics',['Summer Olympics','Winter Olympics'])
 user_menu = st.sidebar.radio(
