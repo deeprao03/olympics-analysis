@@ -63,6 +63,8 @@ Check out the deployed app here:
     ```bash
     streamlit run App/app.py
 
+---
+
 ✅ Future Improvements
 🎯 Add event-specific filters (e.g., swimming, gymnastics)
 
@@ -72,14 +74,11 @@ Check out the deployed app here:
 
 📡 Add real-time Olympic updates (when API available)
 
+---
+
 👤 Author
 Deepanshu Rao
 🔗 GitHub Profile
-
-yaml
-Copy
-Edit
-
 ---
 
 ### ✅ How to Use It
